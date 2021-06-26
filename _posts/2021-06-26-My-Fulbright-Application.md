@@ -5,13 +5,11 @@ date: 2021-06-26
 ---
 
 
-# Fulbright
-
 I made this post to share documents, resources and reccommendations about my Fulbright application to study a master's/Phd in the US.
 
 The Fulbright application is similar to the real college application - you have to provide your resume, your academic transcript, english exams and two essays.
 
-A typical Fulbright scholar has done research in its field of study, which is either STEM, LLM or Education, has impressive work experience or perfect academic history. Usually when you apply, you already have finished your degree and you have your resume built already - the challenge is writing the essays. 
+A typical Fulbright scholar has done research in its field of study, which is either STEM, LLM or Education, has impressive work experience or perfect academic history. Usually when you apply, you already have finished your degree and you have your resume built already - the challenge is writing the essays.
 
 
 
