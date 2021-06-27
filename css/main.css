@@ -37,28 +37,4 @@ footer {
     font-size: .8em;
 }
 
-
-/* Blog */
-ul.posts { margin: 20px auto 40px; font-size: 1.5em; }
-ul.posts li { list-style: none;
-              font-family:'Helvetica', 'Arial', 'Sans-Serif';}
-
-ul.posts p { font-size: 1.2em;
-             line-height: 1.1em;
-             font-family:'Helvetica', 'Arial', 'Sans-Serif';
-}
-
-
-/* CV */
-.cv {line-height: 23px; width: 90%; margin: 0 auto;}
-.cv li { line-height: 23px; }
-.cv h2 { font-size: 26.5px; }
-.cv h1 { font-size: 32.5px; }
-
-.notes, .contact, .about, .cv, .error, .swatches { margin-bottom: 30px; }
-
-/* Contact */
-iframe {font-family: 'Merriweather', Georgia, Times; font-size: 16px;}
-
-/* About */
-.about ul.list-unstyled li { line-height: 30px; text-indent: -30px; margin-left: 30px;}
+ 
