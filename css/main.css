@@ -1,9 +1,9 @@
 body {
     margin: 60px auto;
     width: 70%;
+    font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 }
 nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -20,9 +20,13 @@ a:hover {
     text-decoration: underline;
 }
 h1 {
-    font-size: 2em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    font-size: 1.8em;
 }
+
+h2 {
+    font-size:1.62em;
+}
+
 p {
     font-size: 1.3em;
     line-height: 1.2em;
@@ -32,7 +36,6 @@ footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
-
 
 
 /* Blog */
@@ -45,10 +48,17 @@ ul.posts p { font-size: 1.2em;
              font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 
+
 /* CV */
-.cv { margin: 0px 0px 60px; }
-.cv h1 { font-size: 3em; }
-.cv h2 { font-size: 2em; }
-.cv address, .cv .download { font-family: 'Helvetica', 'Arial', 'Sans-Serif'; }
-.cv address, .cv p { font-size: 1.2em; }
-.cv .download { float: right; font-size: .8em; text-transform: uppercase; }
+.cv {line-height: 23px; width: 90%; margin: 0 auto;}
+.cv li { line-height: 23px; }
+.cv h2 { font-size: 26.5px; }
+.cv h1 { font-size: 32.5px; }
+
+.notes, .contact, .about, .cv, .error, .swatches { margin-bottom: 30px; }
+
+/* Contact */
+iframe {font-family: 'Merriweather', Georgia, Times; font-size: 16px;}
+
+/* About */
+.about ul.list-unstyled li { line-height: 30px; text-indent: -30px; margin-left: 30px;}
