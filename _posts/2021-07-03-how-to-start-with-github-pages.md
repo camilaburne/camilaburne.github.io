@@ -19,4 +19,4 @@ I followed this [amazing guide from J McGlone](http://jmcglone.com/guides/github
 
 
 And now I'm able to run my github pages locally 🥳 <br><br>
-<img src="/_images/local_github_page_test.png">
+<img src="/images/local_github_page_test.png">
