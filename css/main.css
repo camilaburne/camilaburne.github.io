@@ -20,21 +20,32 @@ a:hover {
     text-decoration: underline;
 }
 h1 {
-    font-size: 1.8em;
+    font-size:2em;
 }
 
 h2 {
-    font-size:1.62em;
+    font-size:1.6em;
+}
+
+h3 {
+    font-size:1.2em;
 }
 
 p {
-    font-size: 1.3em;
-    line-height: 1.2em;
+    font-size: 1em;
+    line-height: 1.4em;
     color: #333;
 }
+
+address {
+    font-style: normal;
+    font-size: 1em;
+    line-height: 1.4em;
+    color: #333;
+}
+
+
 footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
-
- 
