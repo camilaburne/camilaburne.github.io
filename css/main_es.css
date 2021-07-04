@@ -1,23 +1,20 @@
 body {
     margin: 60px auto;
     width: 70%;
-    font-family: 'Tahoma','Helvetica', 'Arial', 'Sans-Serif';
+    font-family: 'Tahoma','Helvetica', 'Arial';
 }
 nav ul, footer ul {
-    font-size: 1em;
     padding: 0px;
     list-style: none;
     font-weight: bold;
 }
 nav ul li, footer ul li {
-    font-size: 1em;
     display: inline;
     margin-right: 20px;
 }
-
 a {
     text-decoration: none;
-    color: #069e91;
+    color: #a80c52;
 }
 a:hover {
     text-decoration: underline;
@@ -48,14 +45,10 @@ address {
 }
 
 
+
 footer {
-    border-top: 1px solid #84bab6;
+    border-top: 1px solid #d6b0be;
     font-size: .8em;
     line-height: 1.2em;
     font-style: italic;
-}
-
-.smallimg {
-  width: 400px;
-  height: 180px
 }

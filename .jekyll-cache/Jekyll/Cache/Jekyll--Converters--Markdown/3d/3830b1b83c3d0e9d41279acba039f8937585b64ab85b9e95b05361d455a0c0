@@ -1,5 +1,0 @@
-I"<h1 id="how-to-start-with-github-pages">How to start with github pages</h1>
-<h2 id="when-you-never-wrote-a-single-html-file"><em>When you never wrote a single html file</em></h2>
-
-<p>I followed this <a href="http://jmcglone.com/guides/github-pages/">amazing guide from J McGlone</a> to build this simple github pages, and eventually I got tired of making a thousand commits to test different css styles. I then tried to run my page locally but I stuggled with Jekyll and Ruby and Gems, but finally I did it! Here’s how:</p>
-:ET

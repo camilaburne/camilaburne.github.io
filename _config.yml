@@ -1,6 +1,6 @@
 name: Camila Burne
 markdown: kramdown
 
-permalink: /blog/:year/:month/:day/:title
+#permalink: /blog/:year/:month/:day/:title
 
 port: 4001

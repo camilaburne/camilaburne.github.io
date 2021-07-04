@@ -1,0 +1,22 @@
+I" <h1 id="how-to-start-with-github-pages-on-mac">How to start with github pages on mac</h1>
+<h2 id="when-you-never-wrote-a-single-html-file"><em>When you never wrote a single html file</em></h2>
+
+<p>I followed this <a href="http://jmcglone.com/guides/github-pages/">amazing guide from J McGlone</a> to build this simple github pages, and eventually I got tired of making a thousand commits to test different css styles. I then tried to run my page locally but I struggled with Jekyll and Ruby and Gems. After following <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll#prerequisites">this</a> &amp; <a href="https://jekyllrb.com/docs/">this</a> &amp; <a href="https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/?utm_source=stackoverflow#introduction">this</a> &amp; <a href="https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/">this</a> guidelines, I finally did it! Here’s how:</p>
+
+<ol>
+  <li>
+    <p>Clone <a href="https://github.com/hankquinlan/hankquinlan.github.io">this repo</a> and follow <a href="http://jmcglone.com/guides/github-pages/">this guideline to understand the repo structure.</a></p>
+  </li>
+  <li>
+    <p>Install ruby, gems and Jekyll from <a href="https://github.com/monfresh/install-ruby-on-macos">this repo</a></p>
+  </li>
+  <li>
+    <p>Create new Jekyll website as shown on <a href="https://jekyllrb.com/docs/">this documentation</a>. Note that when you create this project, you will see two files in the project folder: Gemfile and Gemfile.lock</p>
+  </li>
+  <li>
+    <p>Copy and paste these two Gemfiles into your github pages project folder. While you’re on your github pages folder, run jekyll serve on your terminal. Your local site will be running on this server:  Server address: http://127.0.0.1:4000 unless you specified any other port in the config yml file or in the jekyll serve statement.</p>
+  </li>
+</ol>
+
+<p>&lt;img src=”/images/local_github_page_test.png”, class=”centerImage”&gt;</p>
+:ET
