@@ -12,6 +12,8 @@ date: 2021-06-26
 2. [My Fulbright Statement of Purpose Essay](#p1)
 3. [My Fulbright Study Objectives Essay ](#p2)
 4. [Resources](#p3)
+5. [FAQ](#faq)
+
 
 ## Intro <a name="introduction"></a>
 
@@ -85,3 +87,15 @@ Finally, your application should be proofread by other people who can give you u
 - [Reddit Grad School](https://www.reddit.com/r/GradSchool/)
 - [Reddit GRE](https://www.reddit.com/r/GRE/)
 - And any subreddit of the school you want to attend
+
+## FAQ <a name="faq"></a>
+- Hay alguna edad límite?
+No, no hay edad límite pero sí casi todos tienen 30 o menos.
+- Hay algún promedio mínimo?
+Para la beca master y doctorado piden 7 como mínimo, pero después las univerisdades suelen pedir más.
+- Cuánto dura la beca?
+Ya sea que hagas master o doctorado, máximo te "mantienen" dos años. Si haces doctorado lo más probable es que tu universidad te financie el programa a cambio de que hagas research o teaching.
+- Si gano la beca, y después no entro a ninguna universidad?
+Fulbright te da la oportunidad que apliques a 4 escuelas, y que entre esas opciones haya una con muchas chances de que entres (con un admission rate alto). Ellos quieren garantizarse que vayas. 
+- Qué te cubre la beca?
+El vuelo + costo de vida, pero lo justo. La tuition no te la cubren, pero esperan que la universidad te de un full waiver o poder llegar a un acuerdo (pagando un parte mínima o trabajar para la uni, y con eso costear la tuition)
