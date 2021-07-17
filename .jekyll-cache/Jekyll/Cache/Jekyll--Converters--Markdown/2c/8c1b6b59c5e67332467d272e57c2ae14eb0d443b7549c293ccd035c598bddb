@@ -1,0 +1,61 @@
+I"e<h2 id="run-queries-faster">Run queries faster</h2>
+<p><em>Beyond easy SQL</em></p>
+
+<p>A rule of thumb: if your query takes over a minute to run, there are some improvements that you can do on your code to speed things up:</p>
+
+<h3 id="contenidos">Contenidos</h3>
+<ol>
+  <li><a href="#t1">Avoid: <code class="language-plaintext highlighter-rouge">SELECT * FROM table</code></a></li>
+  <li><a href="#t3">Check for Cartesian <code class="language-plaintext highlighter-rouge">JOINS</code></a></li>
+  <li><a href="#t3">Small tables</a></li>
+  <li><a href="#t4">DISTINCT, another pitfall </a></li>
+  <li><a href="#t5">WITH big tables, big time </a></li>
+</ol>
+
+<h4 id="1-avoid--select--from-table-">1. Avoid: ### <code class="language-plaintext highlighter-rouge">SELECT * FROM table</code> <a name="t1"></a></h4>
+
+<p>Today data is stored in Redshift, Hadoop, Big-Query and other big-data warehouses that use columnar-store tables. In this type of storage, accessing many columns is costly, whereas selecting all rows from one column is not. For this reason, avoid at all cost selecting all columns – instead, choose the fields we are interested in.</p>
+
+<ul>
+  <li>Do: <code class="language-plaintext highlighter-rouge">SELECT col1, col2 FROM table</code></li>
+</ul>
+
+<p>Columnar-store is the opposite of more traditional row oriented data stores. In row-store, information is saved and retrieved one row at a time, they are easy to read and write, but it’s not easy to aggregate or fetch all rows at the same time. This is the typical case of a “students database” in which we may want to see the data of a particular individual, let’s say, accessing row one of the following table will give us info of Carl Sagan:</p>
+
+<p>Columnar oriented data store is typically used for OLAP (online analytical processing) applications. Here we would be mostly interested in performing calculations over fields, for example, fetching the Age of multiple objects and calculate it’s range. We are interested in fetching information in this format:
+Ultimately, in both situation a table looks exactly the same, but its performance is different depending on the types of query we ran against it. <a href="https://medium.com/bluecore-engineering/deciding-between-row-and-columnar-stores-why-we-chose-both-3a675dab4087#:~:text=In%20row%20oriented%20databases%2C%20these,data%20is%20read%20at%20once.">Further reading.</a></p>
+
+<h4 id="2-check-for-cartesian-joins-">2. Check for Cartesian <code class="language-plaintext highlighter-rouge">JOINS</code> <a name="t2"></a></h4>
+<p>could be killing the query</p>
+
+<p>This one is simple: review all the joins and don’t use more than <code class="language-plaintext highlighter-rouge">INNER JOIN</code> and <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>. There’s no need for any other, not even right joins.</p>
+
+<h4 id="3-small-tables-">3. Small tables <a name="t3"></a></h4>
+<p>Talking about joins: don’t join huge tables with one another. It’s better to do sub-queries and joining them than using huge tables.</p>
+
+<p>Instead of:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT c.id, c.age, t.amount, t.type  
+FROM customers c
+LEFT JOIN transactions t on c.id = t.customer_id
+</code></pre></div></div>
+
+<p>Do:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT *
+FROM (SELECT id, age FROM customers) c
+LEFT JOIN (SELECT customer_id, amount, type FROM transactions) t on c.id = t.customer_id
+</code></pre></div></div>
+
+<h4 id="4-distinct-another-pitfall-">4. DISTINCT, another pitfall <a name="t4"></a></h4>
+<h4 id="5-with-big-tables-big-time-">5. WITH big tables, big time <a name="t5"></a></h4>
+
+<ol>
+  <li>
+    <p>WITH huge_temporary_table as (SELECT … )</p>
+  </li>
+  <li>
+    <p>DISTINCT also could be eating the memory</p>
+  </li>
+</ol>
+:ET

@@ -16,9 +16,15 @@ a {
     text-decoration: none;
     color: #a80c52;
 }
+
 a:hover {
     text-decoration: underline;
 }
+
+ul li {
+    line-height: 1.4em;
+}
+
 h1 {
     font-size:1.8em;
 }
@@ -52,3 +58,29 @@ footer {
     line-height: 1.2em;
     font-style: italic;
 }
+
+
+
+code {
+    font-family: Monaco, monospace;
+    font-size: $base-font-size;
+    line-height: 1.4em;
+    font-size: .90em;
+    background-color: #eFeFeF;
+    padding: 0.2em;
+    letter-spacing: -0.05em;
+    word-break: normal;
+  }
+
+
+pre {
+      font-family: Monaco, monospace;
+      font-size: $base-font-size;
+      line-height: 1.4em;
+      font-size: .90em;
+      background-color: #eFeFeF;
+      padding: 0.2em;
+      letter-spacing: -0.05em;
+      word-break: normal;
+
+    }

@@ -15,6 +15,10 @@ nav ul li, footer ul li {
     margin-right: 20px;
 }
 
+ul li {
+    line-height: 1.4em;
+}
+
 a {
     text-decoration: none;
     color: #069e91;
@@ -59,3 +63,29 @@ footer {
   width: 400px;
   height: 180px
 }
+
+
+
+code {
+    font-family: Monaco, monospace;
+    font-size: $base-font-size;
+    line-height: 1.4em;
+    font-size: .90em;
+    background-color: #eFeFeF;
+    padding: 0.2em;
+    letter-spacing: -0.05em;
+    word-break: normal;
+  }
+
+
+pre {
+      font-family: Monaco, monospace;
+      font-size: $base-font-size;
+      line-height: 1.4em;
+      font-size: .90em;
+      background-color: #eFeFeF;
+      padding: 0.2em;
+      letter-spacing: -0.05em;
+      word-break: normal;
+
+    }
