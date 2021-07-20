@@ -1,0 +1,33 @@
+I"A<h1 id="abrir-shapefile-en-r">Abrir shapefile en R</h1>
+
+<p>Hay muchas opciones para importar archivos shapefile en R, creo que la más fácil es a través de la librería <a href="#https://cran.r-project.org/web/packages/rgdal/rgdal.pdf">rgdal</a>,  con la función readOGR para leer mapas como objetos espaciales.</p>
+
+<p><code class="language-plaintext highlighter-rouge">library(rgdal)</code></p>
+
+<p>Recomiendo estar trabajando en el mismo working directory en donde se halla el archivo, así se puede verificar que el mismo esté completo y su nombre bien escrito.</p>
+
+<p><code class="language-plaintext highlighter-rouge">setwd("C:/Users/miusuario/Documents/esri")</code></p>
+
+<p>Un shapefile se compone <strong>al menos de 3 archivos</strong>, de extensión: <code class="language-plaintext highlighter-rouge">.shp .shx</code> y <code class="language-plaintext highlighter-rouge">.dbf</code></p>
+
+<p>.shp es el archivo que almacena las entidades geométricas de los objetos.
+.shx es el archivo que almacena el índice de las entidades geométricas.
+.dbf es la base de datos, en formato dBASE, donde se almacena la información de los atributos de los objetos.
+Opcionalmente se pueden utilizar otros archivos con extensión .cpg .prj y .qpj para especificar el encoding o incluir información sobre la proyección cartográfica.
+Al correr list.files() en R, se muestra en la consola el contenido de la carpeta del directorio de trabajo, para este shapefile consiste de seis archivos</p>
+
+<p>[1] “mi_shape.cpg” “mi_shape.dbf” “mi_shape.prj” “mi_shape.qpj” “mi_shape.shp” “mi_shape.shx”
+En R se abre el shapefile al escribir su nombre sin ninguna extensión.</p>
+
+<p>sp_df &lt;- readOGR(dsn = “.”, layer = “mi_shape”)
+Y ahora sí disponer de todas las herramientas de R para hacer gráficos muy lindos.</p>
+
+<p>library(leaflet)</p>
+
+<p>pal &lt;- colorNumeric( palette = “YlGnBu”, domain = shape2$AREA)</p>
+
+<p>leaflet(shape2) %&gt;%
+    addProviderTiles(“CartoDB.Positron”) %&gt;%
+    addPolygons(color = ~pal(shape2$AREA),
+    stroke = FALSE, fillOpacity = 0.6)</p>
+:ET

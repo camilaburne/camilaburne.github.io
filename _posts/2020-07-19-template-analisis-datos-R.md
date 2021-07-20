@@ -2,7 +2,7 @@
 layout: post_es
 categories: "es"
 title: "Código resumen para el análisis de datos en R "
-date: 2021-07-19
+date: 2020-07-19
 ---
 
 
