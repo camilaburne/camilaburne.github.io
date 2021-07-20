@@ -3,12 +3,14 @@ layout: post_es
 categories: "es"
 title: "Código resumen para el análisis de datos en R "
 date: 2020-07-19
+excerpt: "Les comparto un código que sirve de ayuda para limpiar y analizar datos en R en menos de 10 pasos. Yo lo tengo guardado como .txt..."
+tags: R
 ---
 
 
 
-# Código resumen para el análisis de datos en R<a name="p0"></a>  
-Les comparto un código que sirve de ayuda para limpiar y analizar datos en R en menos de 10 pasos. Yo lo tengo guardado como .txt así cada vez que empiezo un proyecto nuevo, lo abro para no tener que buscar ni escribir las mismas funciones que uso cada vez. Dejo los pasos a continuación, con el código de cada uno, y el
+
+Les comparto un código que sirve de ayuda para limpiar y analizar datos en R en menos de 10 pasos.<a name="p0"></a> Yo lo tengo guardado como .txt así cada vez que empiezo un proyecto nuevo, lo abro para no tener que buscar ni escribir las mismas funciones que uso cada vez. Dejo los pasos a continuación, con el código de cada uno, y el
 <a href="/download/template-analisis-datos-R-codigo.txt" class="download">archivo txt para que te lo descargues</a> y la <a href="/download/base_ejemplo.csv" class="download">base csv de ejemplo</a> para ejecutar el código al igual que en esta guía.
 
 

@@ -3,9 +3,9 @@ layout: post
 categories: "en"
 title: "My Fulbright Application"
 date: 2021-06-26
----
+tags: gradschool blog
 
-# How I won a Fulbright Scholarship
+---
 
 ### Contents
 1. [Intro](#intro)

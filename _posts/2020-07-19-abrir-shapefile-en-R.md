@@ -3,11 +3,13 @@ layout: post_es
 categories: "es"
 title: "Abrir Shapefile en R "
 date: 2020-07-19
+excerpt: "Hay muchas opciones para importar archivos shapefile en R, creo que la más fácil es a través de la librería rgdal..."
+tags: R
 ---
 
-# Abrir shapefile en R
-
 Hay muchas opciones para importar archivos shapefile en R, creo que la más fácil es a través de la librería [rgdal](#https://cran.r-project.org/web/packages/rgdal/rgdal.pdf),  con la función readOGR para leer mapas como objetos espaciales.
+
+<!--more-->
 
 `library(rgdal)`
 

@@ -3,9 +3,9 @@ layout: post_es
 categories: "es"
 title: "Cómo me gané la beca Fulbright"
 date: 2021-06-26
+excerpt: "Hice este post para compartir recursos y consejos para que como argentinos puedas estudiar una maestría o un doctorado en Estados Unidos gratis..."
+tags: educacion
 ---
-
-# Cómo me gané la beca Fulbright
 
 ### Contenidos
 1. [Intro](#intro)

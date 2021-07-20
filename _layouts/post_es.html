@@ -5,10 +5,18 @@
   </header>
 
   <head>
-    <title>{{ page.title }}</title>
+    <h1>{{ page.title }}</h1>
     <!-- link to main stylesheet -->
     <link rel="stylesheet" type="text/css" href="/css/main_es.css">
   </head>
+
+  <span>[
+         {% for tag in page.tags %}
+           {% capture tag_name %}{{ tag }}{% endcapture %}
+           <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+         {% endfor %}
+         ]</span>
+
 
   <body>
     <div class="container">
@@ -20,6 +28,6 @@
     <footer>
       <p>{{ page.date | date_to_string }}</p>
     </footer>
-    
+
   </body>
 </html>

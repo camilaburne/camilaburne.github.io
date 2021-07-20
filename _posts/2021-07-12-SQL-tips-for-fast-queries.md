@@ -3,10 +3,9 @@ layout: post
 categories: "en"
 title: "SQL tips for fast queries"
 date: 2021-07-12
+tags: sql blog
+
 ---
-
-
-## SQL tips for fast queries
 
 Querying tables with SQL is the first part of any data science project, sometimes, it can be the slowest one too. To boost the performance of the extraction and loading, I’m writing down some tips to run queries fast.
 
