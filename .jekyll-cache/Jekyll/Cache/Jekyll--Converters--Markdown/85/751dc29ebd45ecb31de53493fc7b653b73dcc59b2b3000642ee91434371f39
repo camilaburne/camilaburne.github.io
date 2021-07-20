@@ -1,0 +1,170 @@
+I"�<h1 id="código-resumen-para-el-análisis-de-datos-en-r">Código resumen para el análisis de Datos en R</h1>
+
+<p>Les comparto un código que sirve de ayuda para limpiar y analizar datos en R en menos de 10 pasos. Yo lo tengo guardado como .txt así cada vez que empiezo un proyecto nuevo, lo abro para no tener que buscar ni escribir las mismas funciones que uso cada vez. Dejo los pasos a continuación, con el código de cada uno, y el
+<a href="/download/resume.pdf" class="download">archivo txt para que te lo descargues</a>.</p>
+
+<h3 id="pasos">Pasos:</h3>
+
+<ol>
+  <li><strong>Directorio</strong> - Elegir un directorio (carpeta) para tu código o verificar que estás en el correcto.</li>
+  <li><strong>Abrir</strong> un conjunto de datos .csv en R como un dataframe (df).</li>
+  <li><strong>Dimensionar</strong> la forma y tamaño del df, columnas, tipos de variables y estadísticas resumen para tener una idea de tus datos.</li>
+  <li><strong>Seleccionar</strong> subgrupos de variables y/o filas.</li>
+  <li><strong>Cambiar tipos</strong> de variable (de factor a texto, de numérica a número entero).</li>
+  <li><strong>Filtrar</strong> datos por condiciones o reglas.</li>
+  <li><strong>Limpiar</strong> duplicados o imputar valores perdidos</li>
+  <li><strong>Visualizar</strong> datos agregados y gráficos.</li>
+  <li><strong>Exportar</strong> el dataframe como .csv</li>
+</ol>
+
+<h3 id="código">Código:</h3>
+
+<pre>
+# 1 DIRECTORIO  
+
+# getwd() para ver el directorio en el que estás ahora
+# setwd() para cambiarlo si no era el correcto
+# list.files() imprime lo que hay adentro
+
+getwd()
+setwd("/Users/camilaburne/R")
+list.files()
+
+</pre>
+
+<pre>
+# 2 ABRIR  
+
+# Abrir archivos que estén dentro del directorio
+# poniendo el nombre en donde dice 'file'
+# read.csv(file, header = TRUE, sep = ",")
+
+df01 &lt;- read.csv("base_ejemplo.csv")
+df02 &lt;- read.csv(list.files()[1])
+
+</pre>
+
+<pre>
+# 3 DIMENSIONAR  
+
+# Funciones para ver qué son y qué tienen los df
+typeof(df01)
+dim(df01)
+names(df01)
+str(df01)
+head(df01, 10)
+tail(df01,4)
+
+# Funciones para ver qué son y qué tienen las variables
+typeof(df01$grupo)
+typeof(df01$gasto)
+typeof(df01$nombre)
+
+# Funciones para ver sus estadísticas resumen
+range(df01$gasto)
+mean(df01$gasto)
+sd(df01$gasto)
+median(df01$gasto)
+quantile(df01$gasto, 0.5)
+summary(df01)
+
+</pre>
+
+<pre>
+# 4 SELECCIONAR  
+
+# Seleccionar una variable solita
+df01$nombre
+df01[ ,'nombre']
+
+# Seleccionar un par de filas y de columnas
+df01[1:10, ]
+df01[c(1,10,20,30), c('nombre','gasto')]
+df01[c(1,10,20,30), c(1,2)]
+
+</pre>
+
+<pre>
+# 5 CAMBIAR TIPOS
+
+# Funciones para cambiar el tipo de variable
+df01$nombre &lt;- as.character(df01$nombre)
+df01$gasto  &lt;- as.numeric(df01$gasto)
+df01$gasto_redondo &lt;- as.integer(df01$gasto)
+
+</pre>
+
+<pre>
+# 6 FILTRAR
+
+# Seleccionar filas usando filtros. Operadores útiles:
+#  &amp;     cumple TODAS las conduciones (Y)
+#  |     cumple AL MENOS una condicion (O)
+#  %in%  contenido en  
+
+df01[df01$gasto &lt; 70, ]
+df01[df01$gasto &lt; 100  &amp; df01$grupo==1, ]
+
+df01[!(df01$mes=='enero'),]
+df01[!(df01$mes=='enero' | df01$mes=='marzo'),]
+
+df01[df01$grupo %in% c(1,2,3), ]
+
+grup12 = c(1,2)
+vars   = c(1,4)
+df01[df01$grupo %in% grup12, vars]
+
+# Guardar selecciones y cosas  
+
+gastos    &lt;- as.data.frame(df01$gasto)
+meses     &lt;- unique(df01$mes)
+df01enero &lt;- df01[df01$mes=='enero',]
+
+<pre>
+
+</pre>
+
+
+# 7 LIMPIAR ---------------------------------------------- #
+# Reemplazar dato perdido
+
+df01$pct[is.na(df01$pct)] = 0
+
+# Encontrar duplicados
+df01$doble &lt;- duplicated(df01)
+table(df01$doble)
+df01[df01$doble==TRUE,]
+
+# Crear df nuevo sin duplicados
+df01unico &lt;- subset(df01, df01$doble==FALSE)
+
+nrow(df01)
+nrow(df01unico)
+
+<pre>
+</pre>
+
+
+# 8 VISUALIZAR --------------------------------------------- #
+# Funciones para sacar conteos, porcentajes, hacer histogramas,
+# scatterplot o gráfico de barras
+
+table(df01unico$tipo)
+prop.table(table(df01unico$tipo))
+
+hist(df01unico$pct, col = 'navyblue', border = 'white')
+plot(df01unico$gasto, df01unico$pct, pch=19)
+barplot(table(df01unico$grupo))
+
+<pre>
+</pre>
+
+
+# 9 GUARDAR ---------------------------------------------- #
+# revisar dónde lo estoy guardando
+
+getwd()
+write.csv(df01unico, 'baseok.csv', row.names = F)
+
+</pre>
+:ET

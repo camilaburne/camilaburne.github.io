@@ -1,130 +1,127 @@
+/* Original Jekyll Settings */
 body {
-    margin: 60px auto;
-    width: 70%;
-    font-family: 'Helvetica', 'Tahoma','Arial', 'Sans-Serif';
+	margin: 60px auto;
+	width: 70%;
+	font-family: 'Helvetica', 'Tahoma','Arial', 'Sans-Serif';
 }
 nav ul, footer ul {
-    font-size: 1em;
-    padding: 0px;
-    list-style: none;
-    font-weight: bold;
+	font-size: 1em;
+	padding: 0px;
+	list-style: none;
+	font-weight: bold;
 }
 nav ul li, footer ul li {
-    font-size: 1em;
-    display: inline;
-    margin-right: 20px;
+	font-size: 1em;
+	display: inline;
+	margin-right: 20px;
 }
-
 ul li {
-    line-height: 1.4em;
+	line-height: 1.6em;
+	color: #333;
 }
-
+ol li {
+	line-height: 1.6em;
+	color: #333;
+}
 a {
-    text-decoration: none;
-    color: #4692a0;
+	text-decoration: none;
+	color: #4692a0;
 }
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 h1 {
-    font-size:1.8em;
+	font-size:1.8em;
 }
-
 h2 {
-    font-size:1.4em;
+	font-size:1.4em;
 }
-
 h3 {
-    font-size:1.2em;
+	font-size:1.2em;
+	color: #333;
 }
-
 p {
-    font-size: 1em;
-    line-height: 1.6em;
-    color: #333;
+	font-size: 1em;
+	line-height: 1.6em;
+	color: #333;
 }
 
+/* Added a bigger paragraph size */
 .pbig {
-    font-size: 1.2em;
-    line-height: 1.6em;
-    color: #333;
+	font-size: 1.2em;
+	line-height: 1.6em;
+	color: #333;
 }
+
 address {
-    font-style: normal;
-    font-size: 1em;
-    line-height: 1.4em;
-    color: #333;
+	font-style: normal;
+	font-size: 1em;
+	line-height: 1.4em;
+	color: #333;
 }
-
-
 footer {
-    border-top: 1px solid #4692a0;
-    font-size: .8em;
-    line-height: 1.2em;
-
+	border-top: 1px solid #4692a0;
+	font-size: .8em;
+	line-height: 1.2em;
 }
 
-.smallimg {
-  width: 400px;
-  height: 180px
-}
-
-
-.hero-image {
-  background-image: url("/images/back_photo_mountain2.png");
-  background-color: #cccccc;
-  height: 200px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.hero-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-
+/* Added style for code chunks */
 code {
-    font-family: Monaco, monospace;
-    font-size: $base-font-size;
-    line-height: 1.4em;
-    font-size: .90em;
-    background-color: #eFeFeF;
-    padding: 0.2em;
-    letter-spacing: -0.05em;
-    word-break: normal;
-  }
-
-
+	font-family: Monaco, monospace;
+	font-size: $base-font-size;
+	line-height: 1.4em;
+	font-size: .90em;
+	background-color: #eFeFeF;
+	padding: 0.2em;
+	letter-spacing: -0.05em;
+	word-break: normal;
+}
 pre {
-      font-family: Monaco, monospace;
-      font-size: $base-font-size;
-      line-height: 1.4em;
-      font-size: .90em;
-      background-color: #eFeFeF;
-      padding: 0.2em;
-      letter-spacing: -0.05em;
-      word-break: normal;
-
-    }
+	font-family: Monaco, monospace;
+	font-size: $base-font-size;
+	line-height: 1.4em;
+	font-size: .90em;
+	background-color: #eFeFeF;
+	padding: 0.2em;
+	white-space: pre-wrap;
+}
 
 
+/* Added a thumbnail picture for downloads */
+.smallimg {
+	width: 400px;
+	height: 180px
+}
 
-/* Style all font awesome icons */
+/* Added a background image */
+.hero-image {
+	background-image: url("/images/back_photo_mountain.jpeg");
+	background-color: #cccccc;
+	height: 200px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+.hero-text {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+}
+
+/* Style all font awesome icons from http://fontawesome.io */
 .fa {
-  padding: 10px;
-  font-size: 20px;
-  width: 30px;
-  text-align: center;
-  text-decoration: none;
+	padding: 10px;
+	font-size: 20px;
+	width: 30px;
+	text-align: center;
+	text-decoration: none;
 }
 
 /* Add a hover effect if you want */
 .fa:hover {
-  opacity: 0.7;
+	opacity: 0.7;
 }
