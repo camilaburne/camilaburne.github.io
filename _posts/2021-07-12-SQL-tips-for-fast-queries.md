@@ -4,12 +4,10 @@ categories: "en"
 title: "SQL tips for fast queries"
 date: 2021-07-12
 tags: sql blog
-
+desc: "5 things to avoid when querying big data"
 ---
 
-Querying tables with SQL is the first part of any data science project, sometimes, it can be the slowest one too. To boost the performance of the extraction and loading, I’m writing down some tips to run queries fast.
-
-I received these tips from my manager after she identified queries that took minutes to run. As a rule of thumb, if a query is taking over 30s, go back and find if there is any of the following mistakes in your SQL.
+Querying tables with SQL is the first part of any data science project, sometimes, it can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing 5 mistakes to avoid when querying big data.
 
 <br />
 
@@ -144,3 +142,5 @@ LEFT JOIN max_amt_cust m on m.id = a.cust_id
 GROUP BY 1
 
 </pre>
+
+I received these tips from my manager after she identified queries that took minutes to run. As a rule of thumb, if a query is taking over 30s, go back and find if there are any of these mistakes in your SQL.

@@ -25,9 +25,18 @@
 
     </div><!-- /.container -->
 
-    <footer>
-      <p>{{ page.date | date_to_string }}</p>
-    </footer>
+
+        <footer>
+              <p>{{ page.date | date_to_string }}</p>
+
+
+              <ul>
+              Share this on
+              <a href="https://twitter.com/intent/tweet?text={{ page.title }}: {{ page.desc }}&url={{ site.url }}{{ page.url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" class="fa fa-twitter"></a>
+              <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title }}&summary={{ page.desc }} " rel="nofollow" target="_blank"  class="fa fa-linkedin"></a>
+              </ul>
+
+       </footer>
 
   </body>
 </html>

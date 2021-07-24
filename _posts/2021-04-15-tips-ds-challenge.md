@@ -3,7 +3,7 @@ layout: post_es
 categories: "es"
 title: "Tips para enviar tu Data Challenge al aplicar a vacantes de Data Scientist"
 date: 2021-04-15
-excerpt: "Después de ver cientos de pruebas resueltas para vacantes en áreas de datos, comparto tips para enviar tu Data Challenge que pueden ayudar a tu aplicación..."
+desc: "Después de ver cientos de pruebas resueltas para vacantes en áreas de datos, comparto tips para enviar tu Data Challenge que pueden ayudar a tu aplicación..."
 ---
 
 _Este artículo lo había publicado en [likedin](https://www.linkedin.com/pulse/tips-para-enviar-tu-data-challenge-al-aplicar-vacantes-camila-burne/?trackingId=1j9b%2Bvl6QiOcM%2F4%2FDI5Zgw%3D%3D) originalmente._

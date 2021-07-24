@@ -3,8 +3,9 @@ layout: post_es
 categories: "es"
 title: "Código resumen para el análisis de datos en R "
 date: 2020-07-19
-excerpt: "Les comparto un código que sirve de ayuda para limpiar y analizar datos en R en menos de 10 pasos. Yo lo tengo guardado como .txt..."
+desc: "Les comparto un código que sirve de ayuda para limpiar y analizar datos en R en menos de 10 pasos. Yo lo tengo guardado como .txt..."
 tags: R
+
 ---
 
 
