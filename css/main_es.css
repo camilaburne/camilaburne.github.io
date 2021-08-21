@@ -3,6 +3,7 @@ body {
 	margin: 60px auto;
 	width: 70%;
 	font-family: 'Helvetica', 'Tahoma','Arial', 'Sans-Serif';
+	text-align: justify;
 }
 nav ul, footer ul {
 	font-size: 1em;
@@ -44,6 +45,7 @@ p {
 	font-size: 1em;
 	line-height: 1.6em;
 	color: #333;
+	text-align: justify;
 }
 
 /* Added a bigger paragraph size */
@@ -59,7 +61,6 @@ p {
 	margin-left: 30px;
 }
 
-
 address {
 	font-style: normal;
 	font-size: 1em;
@@ -70,6 +71,14 @@ footer {
 	border-top: 1px solid #913f57;
 	font-size: .8em;
 	line-height: 1.2em;
+}
+
+blockquote {
+	font-size: 1em;
+	line-height: 1.6em;
+	color: #333;
+	font-style: italic;
+	letter-spacing: 0.025em;
 }
 
 /* Added style for code chunks */
@@ -83,6 +92,7 @@ code {
 	letter-spacing: -0.05em;
 	word-break: normal;
 }
+
 pre {
 	font-family: Monaco, monospace;
 	font-size: $base-font-size;
@@ -98,6 +108,20 @@ pre {
 .smallimg {
 	width: 400px;
 	height: 180px
+}
+
+/* Added a right picture for articles */
+.rightimg {
+	float: right;
+	width: 400px;
+}
+
+
+/* Added a middle picture for articles */
+.middleimg {
+	float: center;
+	width: 800px;
+	position: relative;
 }
 
 /* Added a background image */

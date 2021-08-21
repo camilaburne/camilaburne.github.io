@@ -1,4 +1,4 @@
-I"B<p>Querying tables with SQL is the first part of any data science project, sometimes, it can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing things to avoid when querying big data.</p>
+I"u<p>Querying tables with SQL is the first step in any data science project, and sometimes, can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing 5 mistakes to avoid when querying big data.</p>
 
 <p><br /></p>
 
@@ -14,7 +14,7 @@
 <p><br /></p>
 
 <hr />
-<h3 id="select--from-table-">SELECT * FROM table <a name="t1"></a></h3>
+<h3 id="whats-wrong-with-select--from-table-">What’s wrong with: SELECT * FROM table <a name="t1"></a></h3>
 
 <p>Today, data is stored in  big-data warehouses that use columnar-store tables, like Redshift, Hadoop and Big-Query. In this type of storage it is more efficient to access all rows from a column, than to access all columns for a single row. For this reason, avoid at all cost selecting all columns. Instead, choose only the fields that interest you.</p>
 
@@ -32,16 +32,29 @@
 
 <p><br /></p>
 
-<h3 id="cartesian-joins-">Cartesian Joins <a name="t2"></a></h3>
-<p>Cartersian joins, aka cross joins, return all the possible combinations from the records of two tables, so if you are cross joining two tables with N rows, you’ll get NxN results. Unless you are designing an experiment, or building a view or another table from scrach, you will never use this join. In some SQL editors, this is the default join when you don’t specify otherwise, so always remember to write down either: <code class="language-plaintext highlighter-rouge">INNER JOIN</code> or <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>. There’s no need for any other, not even right joins.</p>
+<h3 id="bugs-in-cartesian-joins-">Bugs in Cartesian Joins <a name="t2"></a></h3>
+<p>Cartersian joins, aka cross joins, return all the possible combinations from the records of two tables, so if you are cross joining two tables with N rows, you’ll get NxN results. Unless you are designing an experiment, or building a view or another table from scratch, you will never use this join. In some SQL editors, this is the default join when you don’t specify otherwise, so always remember to write down either: <code class="language-plaintext highlighter-rouge">INNER JOIN</code> or <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>. There’s no need for any other, not even right joins, that’s only used by weird people.</p>
 
-<p>⛔️ <code class="language-plaintext highlighter-rouge">SELECT t1.col1, t2.col2 FROM table1 as t1, table2 as t2 ;</code></p>
+<p>⛔️</p>
+<pre>
+SELECT
+ t1.col1,
+ t2.col2
+FROM table1 as t1, table2 as t2 ;
+</pre>
 
-<p>✅ <code class="language-plaintext highlighter-rouge">SELECT t1.col1, t2.col2 FROM table1 as t1 LEFT JOIN table2 as t2 ON t1.id = t2.t1_id ;</code></p>
+<p>✅</p>
+<pre>
+SELECT
+ t1.col1,
+ t2.col2
+ FROM table1 as t1
+ LEFT JOIN table2 as t2 ON t1.id = t2.t1_id ;
+</pre>
 
 <p><br /></p>
 
-<h3 id="joins-on-big-tables-">Joins on big tables <a name="t3"></a></h3>
+<h3 id="avoid-joins-on-big-tables-">Avoid Joins on big tables <a name="t3"></a></h3>
 
 <p>Talking about joins: don’t join big tables with one another. It’s better to do a two step process: first reduce each original table through a sub-query, then join these subqueries. Although it looks more complex to have nested queries, it will save time since the runtime will decrease significantly.</p>
 
@@ -69,7 +82,7 @@ LEFT JOIN (
       FROM transactions) t on c.id = t.cust_id
 </pre>
 
-<h3 id="distinct">DISTINCT<a name="t4"></a></h3>
+<h3 id="distinct-is-expensive">DISTINCT is expensive<a name="t4"></a></h3>
 
 <p>The distinct clause is esentially a group by, but an expensive one. It is used to obtain unique information, usually when there are duplicates in your original table or in any of the joins. <code class="language-plaintext highlighter-rouge">DISTINCT</code> works by first sorting all the data, then grouping by all the fields included in the SELECT statement.</p>
 
@@ -128,5 +141,5 @@ GROUP BY 1
 
 </pre>
 
-<p>I received these tips from my manager after she identified queries that took minutes to run. As a rule of thumb, if a query is taking over 30s, go back and find if there is any of these mistakes in your SQL.</p>
+<p>I received these tips from my manager after she identified queries that took minutes to run. As a rule of thumb, if a query is taking over 30s, go back and find if there are any of these mistakes in your SQL.</p>
 :ET

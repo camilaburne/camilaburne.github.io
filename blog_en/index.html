@@ -8,7 +8,7 @@ title: posts
 
 	  {% for post in site.posts %}
 				{% if post.categories contains "en" %}
-			 	<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>{{ post.lang }}
+			 	<li>{{ post.lang }} {{ post.date | date_to_string }} »  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }} </a> </li>
 				</li>
 			 {% endif %}
 	  {% endfor %}

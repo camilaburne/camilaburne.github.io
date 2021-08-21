@@ -7,7 +7,7 @@ title: artículos
 
 			  {% for post in site.posts %}
 						{% if post.categories contains "es" %}
-					 	<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>{{ post.lang }}</li>
+					 	<li>{{ post.lang }} {{ post.date | date_to_string }} »  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }} </a> </li>
 					  {% endif %}
 			  {% endfor %}
 			</ul>
@@ -20,4 +20,4 @@ title: artículos
 <!-- To add excerpt:
      put this in IF clause
 		 <p class='psmall'>{{ post.excerpt }}</p>
---> 
+-->

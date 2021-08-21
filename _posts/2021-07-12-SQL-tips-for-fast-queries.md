@@ -7,7 +7,7 @@ tags: sql blog
 desc: "5 things to avoid when querying big data"
 ---
 
-Querying tables with SQL is the first part of any data science project, sometimes, it can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing 5 mistakes to avoid when querying big data.
+Querying tables with SQL is the first step in any data science project, and sometimes, can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing 5 mistakes to avoid when querying big data.
 
 <br />
 
@@ -22,7 +22,7 @@ Common mistakes:
 <br />
 
 ---
-### SELECT * FROM table <a name="t1"></a>
+### What's wrong with: SELECT * FROM table <a name="t1"></a>
 
 Today, data is stored in  big-data warehouses that use columnar-store tables, like Redshift, Hadoop and Big-Query. In this type of storage it is more efficient to access all rows from a column, than to access all columns for a single row. For this reason, avoid at all cost selecting all columns. Instead, choose only the fields that interest you.
 
@@ -42,16 +42,30 @@ Ultimately, in both situation a table looks exactly the same, but its performanc
 
 <br />
 
-### Cartesian Joins <a name="t2"></a>
-Cartersian joins, aka cross joins, return all the possible combinations from the records of two tables, so if you are cross joining two tables with N rows, you'll get NxN results. Unless you are designing an experiment, or building a view or another table from scrach, you will never use this join. In some SQL editors, this is the default join when you don't specify otherwise, so always remember to write down either: `INNER JOIN` or `LEFT JOIN`. There's no need for any other, not even right joins.
+### Bugs in Cartesian Joins <a name="t2"></a>
+Cartersian joins, aka cross joins, return all the possible combinations from the records of two tables, so if you are cross joining two tables with N rows, you'll get NxN results. Unless you are designing an experiment, or building a view or another table from scratch, you will never use this join. In some SQL editors, this is the default join when you don't specify otherwise, so always remember to write down either: `INNER JOIN` or `LEFT JOIN`. There's no need for any other, not even right joins, that's only used by weird people.
 
-⛔️ `SELECT t1.col1, t2.col2 FROM table1 as t1, table2 as t2 ;`
+⛔️
+<pre>
+SELECT
+ t1.col1,
+ t2.col2
+FROM table1 as t1, table2 as t2 ;
+</pre>
 
-✅ `SELECT t1.col1, t2.col2 FROM table1 as t1 LEFT JOIN table2 as t2 ON t1.id = t2.t1_id ;`
+
+✅
+<pre>
+SELECT
+ t1.col1,
+ t2.col2
+ FROM table1 as t1
+ LEFT JOIN table2 as t2 ON t1.id = t2.t1_id ;
+</pre>
 
 <br />
 
-### Joins on big tables <a name="t3"></a>
+### Avoid Joins on big tables <a name="t3"></a>
 
 Talking about joins: don't join big tables with one another. It's better to do a two step process: first reduce each original table through a sub-query, then join these subqueries. Although it looks more complex to have nested queries, it will save time since the runtime will decrease significantly.
 
@@ -81,7 +95,7 @@ LEFT JOIN (
       FROM transactions) t on c.id = t.cust_id
 </pre>
 
-### DISTINCT<a name="t4"></a>
+### DISTINCT is expensive<a name="t4"></a>
 
 The distinct clause is esentially a group by, but an expensive one. It is used to obtain unique information, usually when there are duplicates in your original table or in any of the joins. `DISTINCT` works by first sorting all the data, then grouping by all the fields included in the SELECT statement.
 

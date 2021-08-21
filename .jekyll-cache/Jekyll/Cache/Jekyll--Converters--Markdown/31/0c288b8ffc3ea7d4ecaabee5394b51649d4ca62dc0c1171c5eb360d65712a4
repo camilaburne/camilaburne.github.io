@@ -1,4 +1,22 @@
-I"G<p>Querying tables with SQL is the first part of any data science project, sometimes, it can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing 5 mistakes to avoid when querying big data.</p>
+I"6 <p>This post follows a <a href="https://www.kaggle.com/statsfromarg/btc-blockchain-data-exploratory-analysis">notebook I made on Kaggle</a> as a first exploratory approach to understanding Bitcoin blockchain data. The goal of this EDA is to become familiarized with the blockchain data structure, and where to find information about blocks, transactions and addresses.</p>
+
+<p>Bitcoin blockchain data is stored in two main tables - blocks and transactions, within transactions there are two nested tables, inputs and outputs.</p>
+
+<p>To start exploring blockchain data I extracted the first rows of all four tables, mapped each field with its meaning, and made some aggregates to get insights.</p>
+
+<ul>
+  <li><a href="#blocks"><strong>Blocks</strong></a>, I visualized number and size of blocks by month, since 2009.</li>
+  <li><a href="#txns"><strong>Transactions</strong></a> I analyze one transaction to understand how transactions, inputs and outputs are linked (Pending to do)</li>
+  <li><a href="#outputs"><strong>Outputs</strong></a> Extract the current number of unspent btc. (Pending to do)</li>
+  <li><a href="#inputs"><strong>Inputs</strong></a> Visualize addresses through time. (Pending to do)</li>
+</ul>
+
+<p>Resources:</p>
+<ul>
+  <li><a href="https://github.com/bitcoinbook/bitcoinbook">Mastering Bitcoin (book on github)</a></li>
+  <li><a href="https://github.com/blockchain-etl">Bitcoin ETL repo, the one that’s dumping btc data on bigquery</a></li>
+  <li><a href="https://towardsdatascience.com/https-medium-com-nocibambi-getting-started-with-bitcoin-data-on-kaggle-with-python-and-bigquery-d5266aa9f52b">Getting started with Bitcoin data on Kaggle with Python and BigQuery</a></li>
+</ul>
 
 <p><br /></p>
 
@@ -14,7 +32,7 @@
 <p><br /></p>
 
 <hr />
-<h3 id="select--from-table-">SELECT * FROM table <a name="t1"></a></h3>
+<h3 id="whats-wrong-with-select--from-table-">What’s wrong with: SELECT * FROM table <a name="t1"></a></h3>
 
 <p>Today, data is stored in  big-data warehouses that use columnar-store tables, like Redshift, Hadoop and Big-Query. In this type of storage it is more efficient to access all rows from a column, than to access all columns for a single row. For this reason, avoid at all cost selecting all columns. Instead, choose only the fields that interest you.</p>
 
@@ -32,16 +50,29 @@
 
 <p><br /></p>
 
-<h3 id="cartesian-joins-">Cartesian Joins <a name="t2"></a></h3>
-<p>Cartersian joins, aka cross joins, return all the possible combinations from the records of two tables, so if you are cross joining two tables with N rows, you’ll get NxN results. Unless you are designing an experiment, or building a view or another table from scrach, you will never use this join. In some SQL editors, this is the default join when you don’t specify otherwise, so always remember to write down either: <code class="language-plaintext highlighter-rouge">INNER JOIN</code> or <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>. There’s no need for any other, not even right joins.</p>
+<h3 id="bugs-in-cartesian-joins-">Bugs in Cartesian Joins <a name="t2"></a></h3>
+<p>Cartersian joins, aka cross joins, return all the possible combinations from the records of two tables, so if you are cross joining two tables with N rows, you’ll get NxN results. Unless you are designing an experiment, or building a view or another table from scratch, you will never use this join. In some SQL editors, this is the default join when you don’t specify otherwise, so always remember to write down either: <code class="language-plaintext highlighter-rouge">INNER JOIN</code> or <code class="language-plaintext highlighter-rouge">LEFT JOIN</code>. There’s no need for any other, not even right joins, that’s only used by weird people.</p>
 
-<p>⛔️ <code class="language-plaintext highlighter-rouge">SELECT t1.col1, t2.col2 FROM table1 as t1, table2 as t2 ;</code></p>
+<p>⛔️</p>
+<pre>
+SELECT
+ t1.col1,
+ t2.col2
+FROM table1 as t1, table2 as t2 ;
+</pre>
 
-<p>✅ <code class="language-plaintext highlighter-rouge">SELECT t1.col1, t2.col2 FROM table1 as t1 LEFT JOIN table2 as t2 ON t1.id = t2.t1_id ;</code></p>
+<p>✅</p>
+<pre>
+SELECT
+ t1.col1,
+ t2.col2
+ FROM table1 as t1
+ LEFT JOIN table2 as t2 ON t1.id = t2.t1_id ;
+</pre>
 
 <p><br /></p>
 
-<h3 id="joins-on-big-tables-">Joins on big tables <a name="t3"></a></h3>
+<h3 id="avoid-joins-on-big-tables-">Avoid Joins on big tables <a name="t3"></a></h3>
 
 <p>Talking about joins: don’t join big tables with one another. It’s better to do a two step process: first reduce each original table through a sub-query, then join these subqueries. Although it looks more complex to have nested queries, it will save time since the runtime will decrease significantly.</p>
 
@@ -69,7 +100,7 @@ LEFT JOIN (
       FROM transactions) t on c.id = t.cust_id
 </pre>
 
-<h3 id="distinct">DISTINCT<a name="t4"></a></h3>
+<h3 id="distinct-is-expensive">DISTINCT is expensive<a name="t4"></a></h3>
 
 <p>The distinct clause is esentially a group by, but an expensive one. It is used to obtain unique information, usually when there are duplicates in your original table or in any of the joins. <code class="language-plaintext highlighter-rouge">DISTINCT</code> works by first sorting all the data, then grouping by all the fields included in the SELECT statement.</p>
 

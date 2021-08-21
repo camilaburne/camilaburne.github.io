@@ -3,6 +3,7 @@ body {
 	margin: 60px auto;
 	width: 70%;
 	font-family: 'Helvetica', 'Tahoma','Arial', 'Sans-Serif';
+	text-align: justify;
 }
 nav ul, footer ul {
 	font-size: 1em;
@@ -44,7 +45,9 @@ p {
 	font-size: 1em;
 	line-height: 1.6em;
 	color: #333;
+	text-align: justify;
 }
+
 
 /* Added a bigger paragraph size */
 .pbig {
@@ -92,6 +95,14 @@ pre {
 	width: 400px;
 	height: 180px
 }
+
+/* Added a middle picture for articles */
+.middleimg {
+	float: center;
+	width: 800px;
+	position: relative;
+}
+
 
 /* Added a background image */
 .hero-image {
