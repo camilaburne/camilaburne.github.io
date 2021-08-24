@@ -14,17 +14,28 @@ The highest level are the blocks, blocks are containers of:
 - metadata about the block itself (size, timestamp)
 - transaction data stored in a Merkle Tree structure.
 
-The second level are transactions, which are related to a block by the block hash, and contain aggregate information about the amounts sent in a typical bitcoin transaction. Since each transaction can have multiple inputs and outputs, there are two nested tables within transaction table that provide the highest detail of a transaction.  
+The second level are transactions, which include:
+- a block hash, to reference the block that they are related to
+- metadata about the transaction (timestamp)
+- a flag to show if it's coinbase or not
+- aggregate information about the amounts, number of inputs and outputs.
 
+Since each transaction can have multiple inputs and outputs, there are two nested tables within transaction table that provide the highest detail of a transaction. With inputs and outputs tables, you can see how much bitcoin was sent in satoshis, how much was received, how much was used for fees, the origin of each input and the recipient(s) of each transaction.
 
-Altogether, there are four tables on Big Query:
+Transactions can be:
+- Coinbase transactions: transactions with 0 inputs, created from mining
+- Typical transactions: in which the input includes 1 or more sources from were the amount was gathered to be sent.
+
+Lastly, an important concept for bitcoin is the UTXO model: in this model, all the "available" bitcoin is the bitcoin that has not been spent. So if a transaction has a hash 123, and this hash is not used as an input in any other transaction, it means that the bitcoin is available to be spent. Otherwise, any bitcoin that is used as an input, is bitcoin that has been spent and can never be used again.
+
+Back to blockchain data - altogether, there are four tables on Big Query:
 
 1. [Blocks](#blocks)
 2. [Transactions](#txns)
 3. [Inputs](#inputs)
 4. [Outputs](#outputs)
 
-To explore Blocks table, I extract the average size by month since 2009 and plot its distribution through time. To understand transaction table, I explore the first recorded transaction, and to understand how inputs and outputs are used, I analyze the pizza transaction 🍕.  
+To explore Blocks table, I extract the average size by month since 2009 and plot its distribution through time. To understand transaction table, I explore the first recorded transaction in the blockchain, and to understand how inputs and outputs are used, I analyze the pizza transaction 🍕.  
 
 <br />
 
@@ -37,11 +48,6 @@ I currently use two ways to use BigQuery - kaggle and python. There are plenty o
 
 <pre>
 from google.cloud import bigquery
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
-
 client = bigquery.Client()
 </pre>
 <br>
@@ -228,8 +234,8 @@ Field descriptions very similar to the inputs table:
 * **addresses**: Addresses which own this output
 * **value**: The value in base currency attached to this output
 
-
-
+<br>
+<br>
 
 **Exploring a specific transaction**
 
@@ -294,7 +300,7 @@ Here we get 133 rows - for just two transactions! Let's analyze some information
 
 <img src="/images/bitcoin_kaggle8.png" height=280px>
 
-Mapping the elements of the inputs and outputs table with concrete transactions was my only method to understand what each table contains. After mapping the most essential fields with its meaning, it could be possible to actually analyze Bitcoin Blockchain data.
+Mapping the elements of the inputs and outputs table with concrete transactions was my only method to understand what each table contains. After mapping the most essential fields with its meaning, it could be possible to actually analyze Bitcoin Blockchain data -- but these are baby steps, as bitcoin blockchain data is hard to load and manipulate.
 
 
 Resources:
