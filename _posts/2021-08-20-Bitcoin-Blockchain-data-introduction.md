@@ -7,30 +7,47 @@ tags: bitcoin sql blog
 desc: "Using BigQuery to do an exploratory analysis on bitcoin open data"
 ---
 
-🚧🚧 site in construction 🚧🚧
+This post follows a [notebook I made on Kaggle](https://www.kaggle.com/statsfromarg/btc-blockchain-data-exploratory-analysis) as an exploratory approach to Bitcoin Blockchain data. The goal of this EDA is to become familiarized with blockchain data structure, and where to find information about blocks, transactions, inputs and output - the main elements of the blockchain.
 
-This post follows a [notebook I made on Kaggle](https://www.kaggle.com/statsfromarg/btc-blockchain-data-exploratory-analysis) as a first exploratory approach to understanding Bitcoin blockchain data. The goal of this EDA is to become familiarized with the blockchain data structure, and where to find information about blocks, transactions and addresses.
+The highest level are the blocks, blocks are containers of:
+- a link to the previous block (this is how they are chained)
+- metadata about the block itself (size, timestamp)
+- transaction data stored in a Merkle Tree structure.
 
-Bitcoin blockchain data at BigQuery is stored in two main tables - blocks and transactions, within transactions there are two nested tables, inputs and outputs.
+The second level are transactions, which are related to a block by the block hash, and contain aggregate information about the amounts sent in a typical bitcoin transaction. Since each transaction can have multiple inputs and outputs, there are two nested tables within transaction table that provide the highest detail of a transaction.  
 
-To start exploring blockchain data I extracted the first rows of all four tables, mapped each field with its meaning, and made some aggregates to get insights.
 
-* [**Blocks**](#blocks), I visualized number and size of blocks by month, since 2009.
-* [**Transactions**](#txns) I analyze one transaction to understand how transactions, inputs and outputs are linked (Pending to do)  
-* [**Inputs & Outputs**](#outputs) Extract the current number of unspent btc. (Pending to do)
+Altogether, there are four tables on Big Query:
 
-Resources:
-- [Mastering Bitcoin (book on github)](https://github.com/bitcoinbook/bitcoinbook)
-- [Bitcoin ETL repo, the one that's dumping btc data on bigquery](https://github.com/blockchain-etl)
-- [Getting started with Bitcoin data on Kaggle with Python and BigQuery](https://towardsdatascience.com/https-medium-com-nocibambi-getting-started-with-bitcoin-data-on-kaggle-with-python-and-bigquery-d5266aa9f52b)
+1. [Blocks](#blocks)
+2. [Transactions](#txns)
+3. [Inputs](#inputs)
+4. [Outputs](#outputs)
+
+To explore Blocks table, I extract the average size by month since 2009 and plot its distribution through time. To understand transaction table, I explore the first recorded transaction, and to understand how inputs and outputs are used, I analyze the pizza transaction 🍕.  
 
 <br />
 
 
 ---
-### Blocks <a name="blocks"></a>
 
-Blocks table contains (...).
+### Connect to BigQuery
+
+I currently use two ways to use BigQuery - kaggle and python. There are plenty of tutorials for python and BigQuery, so here I'll just share the chunk needed to access it through [kaggle](https://www.kaggle.com/bigquery/bitcoin-blockchain).
+
+<pre>
+from google.cloud import bigquery
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+client = bigquery.Client()
+</pre>
+<br>
+
+### Blocks Table <a name="blocks"></a>
+
 Field descriptions [from the bitcoin-etl-airflow repo](https://github.com/blockchain-etl/bitcoin-etl-airflow/blob/master/dags/resources/stages/enrich/schemas/blocks.json).
 
 * **hash**: Hash of this block
@@ -49,11 +66,11 @@ Field descriptions [from the bitcoin-etl-airflow repo](https://github.com/blockc
 
 
 <pre>
-# Exploring bigquery-public-data.crypto_bitcoin.blocks blocks content
+<i>#Lets see the first 10 blocks</i>
 
 q_blocks ='''SELECT
-              *       
-             FROM   `bigquery-public-data.crypto_bitcoin.blocks`  
+             *       
+             FROM   `BigQuery-public-data.crypto_bitcoin.blocks`  
              order by timestamp_month
              limit 10
           '''
@@ -64,30 +81,33 @@ blocks.head()
 
 </pre>
 
-<pre>
+<img src="/images/bitcoin_kaggle1.png" height=180px>
 
-# Aggregating block size and count over months
+
+<pre>
+<i># Aggregating block size and count over months</i>
 
 q_blocks_m ='''SELECT
-              timestamp_month
-            , count(*)   as n_blocks
-            , avg(size)  as mean_size
-            , avg(stripped_size)  as mean_stripped_size        
-           FROM   `bigquery-public-data.crypto_bitcoin.blocks`  
-           group by 1
-        '''
+                timestamp_month
+              , count(*)   as n_blocks
+              , avg(size)  as mean_size
+              , avg(stripped_size)  as mean_stripped_size        
+              FROM   `BigQuery-public-data.crypto_bitcoin.blocks`  
+              group by 1
+            '''
 
 blocks_m = client.query(q_blocks_m).to_dataframe()
 blocks_m.to_csv('blocks_size_month.csv')
 blocks_m.head()
 </pre>
 
+<img src="/images/bitcoin_kaggle2.png" height=180px>
+
+
 <pre>
 blocks_m['month'] = blocks_m.timestamp_month.astype(str).str[0:7]
 blocks_m = blocks_m.sort_values(by=['month']).copy()
-</pre>
 
-<pre>
 p = sns.barplot(x = blocks_m['month'], y= blocks_m['n_blocks'], color='teal')
 p.set_title('Number of blocks by month', size = 20)
 p.set_xticklabels(p.get_xticklabels(), rotation=90, size = 9);
@@ -97,11 +117,15 @@ p.set_title('Average block stripped size by month', size = 20)
 p.set_xticklabels(p.get_xticklabels(), rotation=90, size = 9);
 </pre>
 
+<img src="/images/bitcoin_kaggle3.png" height=280px>
+<br>
+<img src="/images/bitcoin_kaggle4.png" height=280px>
+
 
 
 ### Transactions <a name="txns"></a>
 
-Exploring Transactions table, ignoring the nested tables inputs and outputs.
+Field descriptions:
 
 * **hash**: The hash of this transaction
 * **size**: The size of this transaction in bytes
@@ -123,6 +147,7 @@ Exploring Transactions table, ignoring the nested tables inputs and outputs.
 
 
 <pre>
+<i>#Lets see the first 50 transactions</i>
 
 trx = """
       SELECT  
@@ -140,7 +165,7 @@ trx = """
      ,is_coinbase      as txn_is_coinbase
      ,fee              as txn_fee      
 
-    FROM `bigquery-public-data.crypto_bitcoin.transactions`
+    FROM `BigQuery-public-data.crypto_bitcoin.transactions`
     order by block_timestamp
     limit 50
 
@@ -150,32 +175,75 @@ query_job = client.query(trx)
 iterator  = query_job.result(timeout=60)
 rows      = list(iterator)
 
-# Transform the rows into a nice pandas dataframe
+<i># Transform the rows into a nice pandas dataframe</i>
 trx = pd.DataFrame(data=[list(x.values()) for x in rows], columns=list(rows[0].keys()))
 trx.to_csv('transactions_head.csv')
 trx.head()
 
 </pre>
 
+<img src="/images/bitcoin_kaggle5.png" height=260px>
+
+Without those nested tables, there's no much "transaction" information you can get, other than the timestamp, the output value in satoshis, and a flag if it's coinbase or not. Coinbase = True means that it is the first transaction included in a block, that is, the one is created for mining. We can use the hash and go online and explore a transaction.
 
 <pre>
-# Get the hash of first transaction and explore it on blockchain.com
+<i># Get the hash of the very first bitcoin transaction and explore it on blockchain.com</i>
 trx.txn_hash[0]
 </pre>
 
+`4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b`
 
 
-Without those nested tables, there's no much "transaction" information you can get. For example, for the first transaction, we can see it is_coinbase = True since it's the first transaction included in a block, and the output value of 5000000000, in sats, was the 50 BTC reward for processing a block back in 2009. Checking Bitcoin Explorer, using the transaction hash, we can see the same info + some info about output (the address that it was sent to).
+
+Use this hash and check it on the [blockchain explorer](https://www.blockchain.com/btc/tx/4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b) to confirm some values from the table. For example: is_coinbase = True since it's the first transaction included in a block, the output value of 5000000000, in sats, was the 50 BTC reward for processing a block back in 2009. Other pieces of info such as addresses can't be obtained from the transactions table alone, but we need to see the inputs and outputs.
+
+<img src="/images/bitcoin_kaggle6.png" height=400px>
+
+
+
+### Inputs <a name="inputs"></a>
+
+Field descriptions:
+
+* **index**: 0-indexed number of an input within a transaction
+* **spent_transaction_hash**: The hash of the transaction which contains the output that this input spends
+* **spent_output_index**: The index of the output this input spends
+* **script_asm**: Symbolic representation of the bitcoin's script language op-codes
+* **script_hex**: Hexadecimal representation of the bitcoin's script language op-codes
+* **sequence**: A number intended to allow unconfirmed time-locked transactions to be updated before being finalized; not * **currently** used except to disable locktime in a transaction
+* **required_signatures**: The number of signatures required to authorize the spent output
+* **type**: The address type of the spent output
+* **addresses**: Addresses which own the spent output
+* **value**: The value in base currency attached to the spent output
+
+### Outputs <a name="outputs"></a>
+
+Field descriptions very similar to the inputs table:
+
+* **index**: 0-indexed number of an output within a transaction used by a later transaction to refer to that specific output
+* **script_asm**: Symbolic representation of the bitcoin's script language op-codes
+* **script_hex**: Hexadecimal representation of the bitcoin's script language op-codes
+* **required_signatures**: The number of signatures required to authorize spending of this output
+* **type**: The address type of the output
+* **addresses**: Addresses which own this output
+* **value**: The value in base currency attached to this output
+
+
+
 
 **Exploring a specific transaction**
 
-The above-mentioned transaction was the first one, and involves 50 btc that have never been spent.
-To better understand the anatomy of a more typical transaction, let's see how bitcoins are spent.
+The previously mentioned transaction was the first one, and involves 50 btc that have never been spent, so it has no input (was created from mining) and no linked transaction after that (never spent). To go deeper into a more typical transaction that has inputs and outputs, we need the nested tables inputs and outputs.
 
-Take for example the hash `4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4`. This one has two outputs - one is unspent (available balance for the hodler) and the other one is spent in the transaction with the hash `9a9294fec01d85438d1ecbdfce636b26e896b7a307fd448c3b2e224ef4bf2bae`. This one, in turn, also has two outputs, one spent and one unspent. I know this
+A good example for is the 🍕 transaction, with hash `a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d` we can pull information from the three tables. The pizza transaction is the first known use of Bitcoin to buy delicious food. It was broadcasted to the network on May 22, 2010, after Laszlo Hanyecz paid 10,000 for two pizzas.
+
+
 
 
 <pre>
+<i>#Lets see the pizza transaction, and how the recipient of those 10K btc spent the coins)</i>
+
+
 q_anatomy = """
       SELECT  
      `hash`           as txn_hash
@@ -192,8 +260,8 @@ q_anatomy = """
      JOIN UNNEST(inputs)  as i
      JOIN UNNEST(outputs) as o
      WHERE `hash` in
-     ('4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4'
-      ,'9a9294fec01d85438d1ecbdfce636b26e896b7a307fd448c3b2e224ef4bf2bae')
+     ('a1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d',
+     'cca7507897abc89628f450e8b1e0c6fca4ec3f7b34cccf55f3f531c659ff4d79')
 
      ORDER BY block_timestamp
      """
@@ -202,10 +270,36 @@ query_job = client.query(q_anatomy)
 iterator  = query_job.result(timeout=60)
 rows      = list(iterator)
 
-# Transform the rows into a nice pandas dataframe
+<i># Transform the rows into a nice pandas dataframe</i>
 anatomy = pd.DataFrame(data=[list(x.values()) for x in rows], columns=list(rows[0].keys()))
 anatomy
+
 </pre>
 
+<img src="/images/bitcoin_kaggle7.png" height=400px>
 
-<img src="/images/blockhain_data_txn.jpg" class=middleimg>
+Here we get 133 rows - for just two transactions! Let's analyze some information we get from this table:
+
+1. There are 131 rows that have a txn_hash starting with a1075... these are the *inputs* of the pizza purchase. This means that the pizza eater pulled coins from 131 different sources, adding up to 10,000 BTC, which were sent to only one address.
+
+2. The input count is 131 (gathering from 131 sources) and the output count is just 1 (sent to just one address).  
+
+3. The transaction input value is 1000099000000, because it's including the fee.
+
+4. The transaction output is 1000000000000, because the recipient doesn't receive the fee.
+
+5. There are two rows that have a txn_hash starting with cca750... this transaction is what the recipient of the 10,000 did: he split the 10K in two addresses, sending 577700000000 to one and 422300000000 to the other.
+
+6. We can see how each transaction is linked to the other, in these two rows the nested_hash shows the input of the transaction, which is the hash a1075... - the pizza transaction.
+
+<img src="/images/bitcoin_kaggle8.png" height=280px>
+
+Mapping the elements of the inputs and outputs table with concrete transactions was my only method to understand what each table contains. After mapping the most essential fields with its meaning, it could be possible to actually analyze Bitcoin Blockchain data.
+
+
+Resources:
+- [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
+- A quick [Relational graph](https://medium.com/google-cloud/full-relational-diagram-for-bitcoin-public-data-on-google-BigQuery-3c4772af6325)  mapping the links among these four tables
+- A tutorial to [Getting started with Bitcoin data](https://towardsdatascience.com/https-medium-com-nocibambi-getting-started-with-bitcoin-data-on-kaggle-with-python-and-BigQuery-d5266aa9f52b)  on Kaggle with Python and BigQuery
+- Some [queries from Big Query](https://cloud.google.com/blog/products/data-analytics/introducing-six-new-cryptocurrencies-in-BigQuery-public-datasets-and-how-to-analyze-them), when they published the blockchain data
+- [Bitcoin ETL repo](https://github.com/blockchain-etl), the one that's dumping btc data on BigQuery

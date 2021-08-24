@@ -6,7 +6,7 @@ date: 2021-04-15
 desc: "Después de ver cientos de pruebas resueltas para vacantes en áreas de datos, comparto tips para enviar tu Data Challenge que pueden ayudar a tu aplicación..."
 ---
 
-_Este artículo lo había publicado en [likedin](https://www.linkedin.com/pulse/tips-para-enviar-tu-data-challenge-al-aplicar-vacantes-camila-burne/?trackingId=1j9b%2Bvl6QiOcM%2F4%2FDI5Zgw%3D%3D) originalmente._
+_Este artículo lo había publicado en [likedin](https://www.linkedin.com/pulse/tips-para-enviar-tu-data-challenge-al-aplicar-vacantes-camila-burne/?trackingId=1j9b%2Bvl6QiOcM%2F4%2FDI5Zgw%3D%3D) originalmente, cuando analizaba miles de challenges de candidatos._
 
 Después de ver cientos de pruebas resueltas para vacantes en áreas de datos, comparto tips para enviar tu Data Challenge que pueden ayudar a tu aplicación:
 
@@ -20,4 +20,4 @@ Después de ver cientos de pruebas resueltas para vacantes en áreas de datos, c
 
 5. Si tienes otras ideas, hipótesis o dudas, déjalas por escrito! Se pueden obtener insights valiosos que provienen de variables que a primera vista parecen tener un comportamiento inesperado.
 
-En Stori estamos creciendo súper rápido y actualmente tenemos muchas vacantes abiertas. Nuestro proceso de contratación está estandarizado: primero revisamos el challenge, del cual intentamos entender la forma de pensar y estructurar problemas de cada candidato, incluso antes de leer su nombre o su cv (en parte porque la mayoría de los envíos nos llegan como “Challenge.zip” 😅)
+En [Stori](https://www.storicard.com/) estamos creciendo súper rápido y actualmente tenemos muchas vacantes abiertas. Nuestro proceso de contratación está estandarizado: primero revisamos el challenge, del cual intentamos entender la forma de pensar y estructurar problemas de cada candidato, incluso antes de leer su nombre o su cv (en parte porque la mayoría de los envíos nos llegan como “Challenge.zip” 😅)

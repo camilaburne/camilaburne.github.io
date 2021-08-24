@@ -1,0 +1,22 @@
+I"�<p>I followed this <a href="http://jmcglone.com/guides/github-pages/">amazing guide from J McGlone</a> to build this static website hosted on github pages. Once I had my basic website running, I started to do some edits, but eventually I got tired of making a thousand commits to test different css styles. To test changes to the website avoiding the deploy time in github, I attempted to run it locally: for this I needed Jekyll and Ruby and Gems bundles. The specific requirements to test github pages are in this <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll#prerequisites">github list</a> &amp; <a href="https://jekyllrb.com/docs/">this jekyll list</a>. I tried to install each element separately but I encountered several issues, and then I found a <a href="https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/">repo</a> by Moncef Belyamani from which you can install everything in one step!</p>
+
+<p>In summary,</p>
+
+<ol>
+  <li>
+    <p>To create a simple github pages, clone <a href="https://github.com/hankquinlan/hankquinlan.github.io">this repo</a> and follow <a href="http://jmcglone.com/guides/github-pages/">this guideline to understand the repo structure.</a></p>
+  </li>
+  <li>
+    <p>To run your site locally, install ruby, gems and Jekyll from <a href="https://github.com/monfresh/install-ruby-on-macos">this repo</a></p>
+  </li>
+  <li>
+    <p>Create new Jekyll website as shown on <a href="https://jekyllrb.com/docs/">this documentation</a>. Note that when you create this project, you will see two files in the project folder: Gemfile and Gemfile.lock</p>
+  </li>
+  <li>
+    <p><strong>Copy and paste these two Gemfiles into your github pages project folder</strong>. While you’re on your github pages folder, run jekyll serve on your terminal. Your local site will be running on this server:  Server address: <a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a> unless you specified any other port in the config yml file or in the jekyll serve statement.</p>
+  </li>
+</ol>
+
+<p>And now I’m able to run my github pages locally 🥳 <br /><br />
+<img src="/images/local_github_page_test.png" /></p>
+:ET

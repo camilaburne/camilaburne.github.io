@@ -23,9 +23,9 @@ Ofrece becas para más de 135 países, y cada oficina de país lleva a cabo un p
 ) es a principio de año, en Marzo/Abril, y aplicar es bastante fácil - yo me tardé tres días.
 
 
-La convocatoria de Fulbright es muy similar al proceso de admisión de las universidades: tenés que enviar tu currículum vitae, expediente académico, aprobar un examen de inglés válido (TOEFL, por ejemplo) y redactar dos ensayos.
+La convocatoria de Fulbright es muy similar al proceso de admisión de las universidades: tenés que enviar tu currículum vitae, expediente académico, aprobar un examen de inglés (TOEFL) y redactar dos ensayos.
 
-Por lo que ví entre los Fulbrighters, un caso típico que se gana la beca Fulbright es alquien que pudo haber hecho: investigación en su campo de estudio,_o_ tiene una experiencia laboral impresionante _o_ un historial académico perfecto. Por lo general, cuando presentás su solicitud, ya terminaste tu carrera y tenés tu currículum armado, así que la única oportunidad que queda para demostrar que sos candidato perfecto es a través de los ensayos. Hay dos: un Statement of Porpose y un Study Objectives. Como todo se escribe y es en inglés, compart fragmentos de lo que escribí para estos dos ensayos en inglés.
+Por lo que ví entre los Fulbrighters, un caso típico que se gana la beca Fulbright es alquien que pudo haber hecho: investigación en su campo de estudio, _o_ tiene una experiencia laboral relevante _o_ un historial académico impresionante. Por lo general, cuando presentás su solicitud, ya terminaste tu carrera y tenés tu currículum armado, así que la única oportunidad que queda para demostrar que sos candidato perfecto es a través de los ensayos. Hay dos: un Statement of Porpose y un Study Objectives. Como todo se escribe y es en inglés, comparto fragmentos de lo que escribí para estos dos ensayos en inglés y despues los casi-original en pdf (a los originales los reemplacé por estos bocetos para aplicar a las universidades, y nunca los guardé)
 
 ## My Fulbright Statement of Purpose Essay <a name="p1"></a>
 The SOP is a personal narration of how I discovered a talent for statistics and how I applied it to my personal goals of aiding the most vulnerable. I opened my essay sharing how I (unexpectedly) became interested in my field of study; to then make substantial achievements in the use of data and statistics to aid vulnerable populations. Then I briefly mentioned the topic of my research, and in the last paragraph, the potential benefits this technology can bring to Argentina.
@@ -38,10 +38,11 @@ The openings of each paragraph show the structure of the essay:
 
 - P3) "Since then, my professional career took an exponential growth: from studying in Argentina and Chile, I worked for..."
 
-- P4) I lost this paragraph -- I'm sorry :) I mentioned that in my UN job I realized how GIS data is available and inexpensive and countries could use them to draw national statistics.
+- P4) I  -- I'm sorry :) I mentioned that in my UN job I realized how GIS data is available and inexpensive and countries could use them to draw national statistics.
 
 - P5) "There has never been a more critical time for governments and organizations to profit from the resources made available by satellite images..."
 
+<li><a href="/download/Fulbright_SOP.pdf" class="download" title="Download Statement of Purpose as PDF">Descargar Statement of Purpose en PDF</a></li>
 
 
 ## My Fulbright Study Objectives Essay <a name="p2"></a>
@@ -60,6 +61,8 @@ My Study Objectives essay was chronologically structured. In the beginning I sho
 - P5) "My long-term life mission is to contribute to assuring social and economic conditions that allow people to live with basic human rights and..."
 
 As you may see, there is a small overlap in both Statement of Purpose and Study Objectives. Although in both of them I mention my background and my personal goals - in the first essay I'm mostly focused on describing my past and how I became interested in my field of study and further research; while in the second essay I go more into detail about the program I want to pursue and the practical applications of this field of study.
+
+<li><a href="/download/Fulbright_SOB.pdf" class="download" title="Download Statement of Purpose as PDF">Descargar Study Objectives en PDF</a></li>
 
 
 ## Resources <a name="p3"></a>
@@ -96,7 +99,7 @@ No, no hay edad límite pero sí casi todos tienen 30 o menos.
 
 - Hay algún promedio mínimo?
 
-Para la beca master y doctorado piden 7 como mínimo, pero después las univerisdades suelen pedir más.
+Para la beca master y doctorado piden 7 como mínimo, pero después las universidades suelen pedir más.
 
 - Cuánto dura la beca?
 
@@ -108,4 +111,4 @@ Fulbright te da la oportunidad que apliques a 4 escuelas, y que entre esas opcio
 
 - Qué te cubre la beca?
 
-El vuelo + costo de vida, pero lo justo. La tuition no te la cubren, pero esperan que la universidad te de un full waiver o poder llegar a un acuerdo (pagando un parte m)
+El vuelo + costo de vida, pero lo justo. La tuition no te la cubren, pero esperan que la universidad te de un full waiver o poder llegar a un acuerdo (pagando un parte)

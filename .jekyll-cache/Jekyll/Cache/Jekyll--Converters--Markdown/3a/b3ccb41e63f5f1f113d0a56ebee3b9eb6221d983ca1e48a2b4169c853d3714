@@ -1,2 +1,0 @@
-I"<p>Hay muchas opciones para importar archivos shapefile en R, creo que la más fácil es a través de la librería <a href="#https://cran.r-project.org/web/packages/rgdal/rgdal.pdf">rgdal</a>,  con la función readOGR para leer mapas como objetos espaciales.</p>
-:ET
