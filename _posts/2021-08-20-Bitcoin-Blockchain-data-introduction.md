@@ -6,6 +6,17 @@ date: 2021-08-20
 tags: bitcoin sql blog
 desc: "Using BigQuery to do an exploratory analysis on bitcoin open data"
 ---
+Contents:
+0. [Intro](#intro)
+1. [Blocks](#blocks)
+2. [Transactions](#txns)
+3. [Inputs](#inputs)
+4. [Outputs](#outputs)
+4. [Anatomy of a transaction](#anatomy)
+5. [Resources](#resources)
+
+### Intro <a name="intro"></a>
+
 
 This post follows a [notebook I made on Kaggle](https://www.kaggle.com/statsfromarg/btc-blockchain-data-exploratory-analysis) as an exploratory approach to Bitcoin Blockchain data. The goal of this EDA is to become familiarized with blockchain data structure, and where to find information about blocks, transactions, inputs and output - the main elements of the blockchain.
 
@@ -237,7 +248,7 @@ Field descriptions very similar to the inputs table:
 <br>
 <br>
 
-**Exploring a specific transaction**
+### Anatomy of a transaction <a name="anatomy"></a>
 
 The previously mentioned transaction was the first one, and involves 50 btc that have never been spent, so it has no input (was created from mining) and no linked transaction after that (never spent). To go deeper into a more typical transaction that has inputs and outputs, we need the nested tables inputs and outputs.
 
@@ -302,8 +313,8 @@ Here we get 133 rows - for just two transactions! Let's analyze some information
 
 Mapping the elements of the inputs and outputs table with concrete transactions was my only method to understand what each table contains. After mapping the most essential fields with its meaning, it could be possible to actually analyze Bitcoin Blockchain data -- but these are baby steps, as bitcoin blockchain data is hard to load and manipulate.
 
+### Resources: <a name="resources"></a>
 
-Resources:
 - [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook)
 - A quick [Relational graph](https://medium.com/google-cloud/full-relational-diagram-for-bitcoin-public-data-on-google-BigQuery-3c4772af6325)  mapping the links among these four tables
 - A tutorial to [Getting started with Bitcoin data](https://towardsdatascience.com/https-medium-com-nocibambi-getting-started-with-bitcoin-data-on-kaggle-with-python-and-BigQuery-d5266aa9f52b)  on Kaggle with Python and BigQuery
