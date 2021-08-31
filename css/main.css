@@ -95,6 +95,10 @@ pre {
   list-style: none; /* Remove default bullets */
 }
 
+.github-comments .user{
+  font-weight: bold;
+}
+
 .github-comments .avatar{
   margin-left: 0px;
   margin-right: 20px;

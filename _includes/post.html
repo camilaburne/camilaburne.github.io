@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+
+  <header>
+    <a href="/blog_en">back to /blog</a></p>
+  </header>
+
+  <head>
+
+    <h1>{{ page.title }}</h1>
+
+    <!-- link to main stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  </head>
+
+  <span>[
+         {% for tag in page.tags %}
+           {% capture tag_name %}{{ tag }}{% endcapture %}
+           <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+         {% endfor %}
+         ]</span>
+
+  <body>
+    <div id="fb-root"></div>
+    <div class="container">
+
+    {{ content }}
+
+    </div><!-- /.container -->
+
+    <div id="github-comments">
+ 		{% if page.comment_id %}
+			{% include comments.html %}
+		{% endif %}
+    </div>
+
+
+    </section>
+
+
+    <footer>
+          <p>{{ page.date | date_to_string }}</p>
+          <!--
+          <ul>
+          Share this on
+          <a href="https://twitter.com/intent/tweet?text={{ page.title }}: {{ page.desc }}&url={{ site.url }}{{ page.url }}&via={{ site.twitter_username }}&related={{ site.twitter_username }}" rel="nofollow" target="_blank" class="fa fa-twitter"></a>
+          <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&summary={{ page.desc }} " rel="nofollow" target="_blank"  class="fa fa-linkedin"></a>
+          </ul> -->
+
+   </footer>
+
+
+  </body>
+</html>
