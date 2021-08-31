@@ -111,6 +111,18 @@ pre {
 
 }
 
+.avatar{
+  margin-left: 0px;
+  margin-right: 20px;
+	max-width: 64px;
+  max-height: 64px;
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	box-shadow: 0 0 3px #aaa;
+
+}
+
 .github-comments .comment-url {
 	width: 100%;
 	text-align: right;
