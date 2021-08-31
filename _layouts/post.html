@@ -33,8 +33,16 @@
 
     </div><!-- /.container -->
 
+
+    <div>
+    <br>
+    <h2>Comments</h2>
+    <p id="leave-a-comment">Join the discussion via github on <a href="https://github.com/camilaburne/camilaburne.github.io/issues/{{page.comment_id}}">this ticket</a>. Comments appear on this page instantly.</p>
+    <br>
+    </div>
+
     <div id = github-comments>
- 		{% if page.comment_id %}
+   		{% if page.comment_id %}
 			{% include comments.html %}
 		{% endif %}
     </div>

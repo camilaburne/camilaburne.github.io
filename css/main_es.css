@@ -157,3 +157,44 @@ pre {
 .fa:hover {
 	opacity: 0.7;
 }
+
+/* Added a small size for avatar pictures */
+
+.github-comments ul {
+  list-style: none; /* Remove default bullets */
+}
+
+.github-comments .user{
+  font-weight: bold;
+}
+
+.github-comments .avatar{
+  margin-left: 0px;
+  margin-right: 20px;
+	max-width: 64px;
+  max-height: 64px;
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	box-shadow: 0 0 3px #aaa;
+
+}
+
+.avatar{
+  margin-left: 0px;
+  margin-right: 20px;
+	max-width: 64px;
+  max-height: 64px;
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	box-shadow: 0 0 3px #aaa;
+
+}
+
+.github-comments .comment-url {
+	width: 100%;
+	text-align: right;
+	font-size: .7em;
+	opacity: .5;
+}
