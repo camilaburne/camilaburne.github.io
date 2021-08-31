@@ -5,6 +5,8 @@ title: "M1 MacBook setup for Data Science in 2021"
 date: 2021-08-29
 tags: blog
 desc: "My to-do list to setup my new mac, and the issue I encounter"
+comment_id: 9
+
 ---
 
 I'm in the ongoing process of setting up my new MacBook Air (M1, 2020) for my data analytics projects plus grad-school homework, so I need a very *average* set up of Homebrew, Python, Pyenv, Jupyterlab, R; on top of some simple things for my blog like Jekyll and Ruby. While doing this, I've been encountering issues - mainly because of incompatibilities with python libraries that are not yet updated. I'll be logging these issues and hopefully whatever workaround I found to solve them.

@@ -5,6 +5,7 @@ title: "How to locally test your github pages on Mac"
 date: 2021-07-03
 tags: jekyll blog github
 desc: "Running your Jekyll site locally"
+comment_id: 6
 ---
 
 I followed this [amazing guide from J McGlone](http://jmcglone.com/guides/github-pages/) to build this static website hosted on github pages. Once I had my basic website running, I started to do some edits, but eventually I got tired of making a thousand commits to test different css styles. To test changes to the website avoiding the deploy time in github, I attempted to run it locally: for this I needed Jekyll and Ruby and Gems bundles. The specific requirements to test github pages are in this [github list](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll#prerequisites) & [this jekyll list](https://jekyllrb.com/docs/). I tried to install each element separately but I encountered several issues, and then I found a [repo](https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/) by Moncef Belyamani from which you can install everything in one step! Thanks internet people for sharing content like this 🥰.

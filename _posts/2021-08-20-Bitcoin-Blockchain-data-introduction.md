@@ -5,6 +5,8 @@ title: "Introduction to Bitcoin Blockchain Data"
 date: 2021-08-20
 tags: bitcoin sql blog
 desc: "Using BigQuery to do an exploratory analysis on bitcoin open data"
+comment_id: 8
+
 ---
 Contents:
 0. [Intro](#intro)

@@ -5,6 +5,8 @@ title: "SQL tips for fast queries"
 date: 2021-07-12
 tags: sql blog
 desc: "5 things to avoid when querying big data"
+comment_id: 7
+
 ---
 
 Querying tables with SQL is the first step in any data science project, and sometimes, can be the slowest one too. To boost the performance of the extraction and loading, I’m sharing 5 mistakes to avoid when querying big data.

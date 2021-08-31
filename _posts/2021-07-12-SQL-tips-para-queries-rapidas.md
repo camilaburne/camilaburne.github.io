@@ -5,6 +5,7 @@ title: "SQL tips para correr queries rápido"
 date: 2021-07-12
 tags: sql blog
 desc: "5 cosas a evitar al usar bases de big data"
+comment_id: 5
 ---
 
 Una nueva manager en mi área revisó mi código y el de mi equipo, y después de ver que las queries duraban minutos, decidió hacer una reunión para educar a todos en SQL, usando nuestro trabajo como ejemplo de lo que **no** hay que hacer 🥲. Para no pasar esta vergüenza nunca más, me anoté 5 errores para evitar en mis queries.

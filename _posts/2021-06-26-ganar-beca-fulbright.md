@@ -6,6 +6,9 @@ date: 2021-06-26
 excerpt: "Hice este post para compartir recursos y consejos para que como argentinos puedas estudiar una maestría o un doctorado en Estados Unidos gratis..."
 tags: educacion
 desc: "Ensayos para tu aplicación Fulbright"
+comment_id: 2
+
+
 ---
 
 ### Contenidos
