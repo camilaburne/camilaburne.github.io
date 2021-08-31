@@ -5,7 +5,7 @@ title: "How to get a Fulbright scholarship"
 date: 2021-06-26
 tags: gradschool blog
 desc: "Essays and tips to win Fulbright"
-comments_id: 1
+comment_id: 1
 
 ---
 
