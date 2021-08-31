@@ -4,7 +4,6 @@ categories: "es"
 title: "Tips para enviar tu Data Challenge al aplicar a vacantes de Data Scientist"
 date: 2021-04-15
 desc: "Después de ver cientos de pruebas resueltas para vacantes en áreas de datos, comparto tips para enviar tu Data Challenge que pueden ayudar a tu aplicación..."
-
 comment_id: 4
 
 ---
