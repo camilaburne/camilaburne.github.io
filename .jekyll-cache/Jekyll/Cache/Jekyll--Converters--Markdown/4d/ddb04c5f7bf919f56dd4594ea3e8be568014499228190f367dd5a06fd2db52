@@ -1,0 +1,91 @@
+I".<p>Anomaly or outlier detection is the search of atypical observations that don’t seem to fit with a pattern found in the majority of data. To start an anomaly detection project is tricky, because usually the source data is not labelled as ‘anomaly’/’non-anomaly’, so unsupervised methods are the go-to method to identify outliers.</p>
+
+<p>There are at least two broad approaches to search for  these rare observations, one is based on defining a pattern first, and then ruling out the specific cases that don’t conform to that pattern.</p>
+
+<p>The other approach, the one I’m interesting in using, is not concerned with the pattern of the majority of the data, but with finding ways to <em>isolate</em> observations. The idea of an isolation tree is to build a tree following the same splits as a common classification tree. When the tree is fully grown, reaching one observation in each leaf, we can then measure how long it took for the tree to reach that one observation.</p>
+
+<p>Looking at the following chart, we can see that adjusting a tree with all leaves of size = 1 will provide different number of splits for different observations. The pink path is the shortest among all leaves, and thus can be identified as an anomaly. The other two blue leaves have 4 splits, and as the trees continues, we can see that for the rest of the observations the path length is at least 5.</p>
+
+<p><br />
+<img src="/images/isolation_tree.png" class="center" height="480px" />
+<br /></p>
+
+<p>The shorter the path between the origin and a leaf, the more rare that observation is. A measure for the path distance is the <em>number of splits needed</em> to isolate a single observation.</p>
+
+<hr />
+
+<p>Finding anomalies is of great interest in OLAP data, so I adjusted my Isolation Tree using an <a href="https://www.kaggle.com/arjunbhasin2013/ccdata">open kaggle data set</a> of credit card transactions. The data contains usage behavior of about 9000 active credit card holders during the last 6 months. After running the isolation tree, most detected outliers include high amounts of payments and purchases.</p>
+
+<p>The library used to run my Isolation Tree is my favorite <a href="https://www.h2o.ai/">h20.ai 💛</a> and it’s also <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html">available at scikitlearn</a>. I like h20.ai because it’s an open source, distributed, fast, and flexible machine learning platform that runs on <strong>both R and Python</strong>, which is a great relief for statisticians still undecided on which tool is best.</p>
+
+<p>For a quick, 30ish line script, R and h20.ai do an amazing job in detecting the outliers.</p>
+
+<pre>
+library(h2o)
+
+options(scipen=999)
+
+# Read file from Kaggle Open Data
+cc &lt;- read.csv('CC GENERAL.csv', dec = '.')
+
+# Forget NAs
+cc &lt;- cc[is.na(cc$CREDIT_LIMIT)==F,]
+cc &lt;- cc[is.na(cc$MINIMUM_PAYMENTS)==F,]
+</pre>
+
+<p>When working with h2o.ai, first we have to initiate h2o and once it’s loaded (takes 10-20 seconds for me), we can use the package.</p>
+
+<pre>
+# Use h2o object
+h2o.init()
+df  &lt;- as.h2o(cc)
+
+# Build Isolation Tree
+it  &lt;- h2o.isolationForest(training_frame = df,
+                          sample_rate = 0.1,
+                          max_depth = 20,
+                          ntrees = 1000)
+
+# Keep prediction and mean length and add to original df
+pred  &lt;- h2o.predict(it, df)
+cc_df &lt;- cbind(cc,as.data.frame(pred))
+
+# Distribution of mean length and predicted values:
+
+hist(cc_df$predict, col='grey75', border='grey65', main = 'iTree predicted values', xlab = 'Predicted')
+abline(v = 0.85, col='orange', lwd=3, lty=3)
+</pre>
+
+<p><br />
+<img src="/images/itree_histogram.png" class="center" height="380px" />
+<br /></p>
+
+<p>After watching the histogram, I chose a cut of 0.85 that separates &lt;4% of the observations. This gives a small set of anomalies to investigate and label, simplifying the task of detecting anomalies by providing a small set of observations to look into.</p>
+
+<p>Partial plots of some X variables and the predicted values show that the prediction tree usually isolates observations with hight minimum payments and usage rates.</p>
+
+<p><br />
+<img src="/images/itree_scatter1.png" class="center" height="380px" />
+<br /></p>
+
+<p><br />
+<img src="/images/itree_scatter3.png" class="center" height="380px" />
+<br /></p>
+
+<p>My <a href="https://github.com/camilaburne/h2o">repo of h2o.ai stuff I like is on github</a>, with the isolation tree case included.</p>
+
+<p><br /></p>
+
+<p>Resources on isolation forest:</p>
+<ul>
+  <li>
+    <p><a href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm08b.pdf">Published paper by: Liu, Fei Tony, Ting, Kai Ming, and Zhou, Zhi-Hua, “Isolation Forest”</a></p>
+  </li>
+  <li>
+    <p><a href="https://docs.h2o.ai/h2o/latest-stable/h2o-docs/data-science/if.html">h2o.ai documentation on Isolation Forest</a></p>
+  </li>
+  <li>
+    <p><a href="https://scikit-learn.org/stable/auto_examples/ensemble/plot_isolation_forest.html#sphx-glr-auto-examples-ensemble-plot-isolation-forest-py">scikit documentation on Isolation Forest</a></p>
+  </li>
+</ul>
+:ET
