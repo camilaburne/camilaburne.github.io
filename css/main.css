@@ -48,7 +48,7 @@ p {
 	text-align: justify;
 }
 
-
+}
 /* Added a bigger paragraph size */
 .pbig {
 	font-size: 1.2em;
@@ -89,6 +89,12 @@ pre {
 	white-space: pre-wrap;
 }
 
+random {
+	font-style: normal;
+	font-size: 1em;
+	line-height: 1.4em;
+	color: #545454;
+}
 /* Added a small size for avatar pictures */
 
 .github-comments ul {
